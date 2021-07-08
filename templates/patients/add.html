@@ -1,0 +1,35 @@
+{% extends 'patients/main.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-lg">
+		<hr>
+		<div class="card card-body">
+
+			<table class="table table-lg">
+				<tr>
+					<th>Имя</th>
+                    <th><input></th>
+				</tr>
+                <tr>
+					<th>Фамилия</th>
+                    <th><input></th>
+				</tr>
+                <tr>
+					<th>Отчество</th>
+                    <th><input></th>
+				</tr>
+                <tr>
+					<th>Дата рождения</th>
+                    <th><input></th>
+				</tr>
+                <tr>
+					<th>Диагноз</th>
+                    <th><input></th>
+				</tr>
+			</table>
+            <a class="btn btn-primary  btn-lg btn-block" href="">Добавить пациента</a>
+		</div>
+	</div>
+
+</div>
+{% endblock %}
