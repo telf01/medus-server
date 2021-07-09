@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-# Create your views here.
+from .forms import PatientForm
 
 
 # Get response with list of all patients.
@@ -11,4 +10,12 @@ def plist(request):
 
 # Get response with patient add menu.
 def add(request):
-    return render(request, 'patients/add.html')
+    form = PatientForm()
+    if request.method == 'POST':
+        print(request.POST)
+        form = PatientForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+    context = {'form': form}
+    return render(request, 'patients/add.html', context)
