@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 
@@ -10,3 +12,4 @@ class Patient(models.Model):
     diagnosis = models.CharField(max_length=100, null=True)
     appointment = models.TextField(max_length=10000, null=True)
     comment = models.TextField(max_length=10000, null=True)
+    uuid = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
