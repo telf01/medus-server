@@ -1,0 +1,20 @@
+{% extends 'patients/main.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg">
+            <hr>
+            <div class="card card-body">
+                <form action="" method="post">
+                    <table class="table table-lg">
+                        <tr>
+                            {% csrf_token %}
+                            {{ form }}
+                        </tr>
+                    </table>
+                    <input class="btn btn-primary btn-lg btn-block" autofocus type="submit" value="Добавить пользователя">
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

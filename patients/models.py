@@ -17,3 +17,12 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.name + ' ' + self.lastname
+
+
+class User(models.Model):
+    login = models.CharField(max_length=60, unique=True)
+    password_hash = models.CharField(max_length=200)
+    token = models.CharField(max_length=100, blank=True, default=uuid.uuid4)
+
+    def __str__(self):
+        return self.login

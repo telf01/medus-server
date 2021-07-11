@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from patients.models import Patient
+from patients.models import Patient, User
 from .serializers import PatientSerializer
 
 
@@ -18,6 +18,10 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def getPatient(request, pk):
-    patients = Patient.objects.get(uuid=pk)
-    serializer = PatientSerializer(patients, many=False)
-    return Response(serializer.data)
+    user_token = request.headers['token']
+    if User.objects.filter(token=user_token).exists():
+        patients = Patient.objects.get(uuid=pk)
+        serializer = PatientSerializer(patients, many=False)
+        return Response(serializer.data)
+    else:
+        return Response(status=401)
