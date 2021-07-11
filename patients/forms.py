@@ -1,10 +1,9 @@
+import hashlib
 from datetime import datetime
 
 from django import forms
 from django.forms import ModelForm
 from .models import Patient, User
-
-from hashlib import sha256
 
 
 class PatientForm(ModelForm):
@@ -40,6 +39,5 @@ class UserForm(ModelForm):
         }
 
     def save(self, commit=True):
-        phash = sha256(self.cleaned_data['password'].encode('utf-8'))
-        self.cleaned_data['password_hash'] = phash
-        return super(UserForm, self).save(commit=commit)
+        super(UserForm, self).save(commit=commit)
+        return User.objects.filter(login=self.cleaned_data['login']).update(login=self.cleaned_data['login'], password_hash=hashlib.sha256(self.cleaned_data['password'].encode('utf-8')).hexdigest())
