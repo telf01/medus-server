@@ -1,2 +1,22 @@
+{% load static %}
 {% load qr_code %}
-{% qr_from_text uuid size="m" image_format="png" error_correction="M" %}
+
+<img class="qr_frame" src="{% static 'patient/img/QRRecon3.png' %}">
+<div class="qr_img">
+    {% qr_from_text uuid size="H" image_format="png" error_correction="M" %}
+</div>
+
+<style>
+    .qr_frame {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .qr_img {
+        position: absolute;
+        top: 300px;
+        left: 300px;
+
+    }
+</style>
