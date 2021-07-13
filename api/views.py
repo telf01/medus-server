@@ -45,4 +45,4 @@ def getToken(request):
             }
         )
     else:
-        return JsonResponse(status=401)
+        return JsonResponse({}, status=401)
