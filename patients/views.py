@@ -31,3 +31,8 @@ def addUser(request):
             form.save()
     context = {'form': form}
     return render(request, 'patients/adduser.html', context)
+
+
+def qrTest(request):
+    args = {'uuid': '8707158f-0b1f-4e53-ba93-f4f997e53d1e'}
+    return render(request, 'patients/qr.html', args)
