@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+import django
 from django.db import models
 
 
@@ -9,7 +10,7 @@ class Patient(models.Model):
     lastname = models.CharField(max_length=60)
     patronymic = models.CharField(max_length=60, null=True)
     date_of_birth = models.DateField()
-    date_of_receipt = models.DateTimeField(default=datetime.datetime.now())
+    date_of_receipt = models.DateTimeField(default=django.utils.timezone.now)
     diagnosis = models.CharField(max_length=100, null=True)
     appointment = models.TextField(max_length=10000, null=True)
     comment = models.TextField(max_length=10000, null=True)
