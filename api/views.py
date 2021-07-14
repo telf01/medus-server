@@ -3,13 +3,14 @@ import json
 
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.core import serializers
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import parsers
 
 from patients.models import Patient, User, Note
-from .serializers import PatientSerializer
+from .serializers import PatientSerializer, NoteSerializer
 
 
 @api_view(['GET'])
@@ -63,5 +64,18 @@ def addNote(request):
         note.patient = Patient.objects.get(uuid=raw_data['uuid'])
         note.save()
         return JsonResponse({}, status=200)
+    else:
+        return JsonResponse({}, status=401)
+
+
+@api_view(['GET'])
+def getNotes(request, pk):
+    user_token = request.headers['token']
+    if User.objects.filter(token=user_token).exists():
+        patient = Patient.objects.get(uuid=pk)
+        notes = Note.objects.filter(patient=patient).all()
+        js = NoteSerializer(notes, many=True)
+        print(js.data)
+        return JsonResponse({'note':js.data}, status=200)
     else:
         return JsonResponse({}, status=401)
