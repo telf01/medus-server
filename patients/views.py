@@ -21,6 +21,7 @@ def add(request):
         print(form.is_valid())
         if form.is_valid():
             form.save()
+            return render(request, 'patients/list.html')
     context = {'form': form}
     return render(request, 'patients/add.html', context)
 
@@ -33,6 +34,7 @@ def addUser(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
+            return render(request, 'patients/list.html')
     context = {'form': form}
     return render(request, 'patients/adduser.html', context)
 
