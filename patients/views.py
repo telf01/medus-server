@@ -16,7 +16,7 @@ def plist(request):
         """
 
         patients = Patient.objects.all
-        return render(request, 'patients/list.html', {'tittle': 'Список','patients':patients})
+        return render(request, 'patients/index.html', {'tittle': 'Список','patients':patients})
     else:
         return redirect('/login')
 

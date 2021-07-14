@@ -1,0 +1,30 @@
+{% extends 'patients/main.html' %}
+{% load qr_code %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<h1>Пациенты</h1>
+
+{% if patients %}
+{% for el in patients %}
+<div class="alert alert-warning mt-2">
+    <h3> {{el.name}}</h3>
+    <h3> {{el.lastname}}</h3>
+    <h3> {{el.patronymic}}</h3>
+    <p> {{el.date_of_birth}}</p>
+    <p> {{el.date_of_receipt}}</p>
+    <p> {{el.diagnosis}}</p>
+    <p> {{el.appointment}}</p>
+    <p> {{el.comment}}</p>
+    <p> {{el.uuid}}</p>
+    <a href="qr-test/{{el.uuid}}">QR код пациента</a>
+
+</div>
+{% endfor %}
+{% else %}
+<p> Нет записей </p>
+{% endif %}
+{% endblock %}
