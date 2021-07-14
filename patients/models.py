@@ -37,3 +37,9 @@ class Note(models.Model):
 
     def __str__(self):
         return str(self.time_of_creation) + ': ' + self.header
+
+
+class Session(models.Model):
+    auth_token = models.CharField(max_length=100, default=uuid.uuid4)
+    login = models.CharField(max_length=60)
+    last_used = models.DateTimeField(default=django.utils.timezone.now)
