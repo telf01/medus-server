@@ -1,6 +1,7 @@
 {% load static %}
 {% load qr_code %}
-
+{% extends 'patients/index.html' %}
+{% block qrcode %}
 <img class="qr_frame" src="{% static 'patient/img/QRRecon3.png' %}">
 <div class="qr_img">
     {% qr_from_text uuid size="H" image_format="png" error_correction="M" %}
@@ -20,3 +21,5 @@
 
     }
 </style>
+
+{% endblock %}

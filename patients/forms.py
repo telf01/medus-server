@@ -2,7 +2,7 @@ import hashlib
 from datetime import datetime
 
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm,TextInput,Textarea
 from .models import Patient, User
 
 
@@ -22,6 +22,16 @@ class PatientForm(ModelForm):
             'comment': 'Комментарий',
         }
         widgets = {
+            "name": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите имя'
+            }),
+
+            "lastname": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите фамилию'
+            }),
+
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'date_of_receipt': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime'}),
         }

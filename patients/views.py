@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import PatientForm, UserForm
-
+from .models import Patient
 
 # Get response with list of all patients.
 def plist(request):
+    """
     return render(request, 'patients/list.html')
+    """
 
+    patients = Patient.objects.all
+    return render(request, 'patients/index.html', {'tittle': 'Список','patients':patients})
 
 # Get response with patient add menu.
 def add(request):
