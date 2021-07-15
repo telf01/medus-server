@@ -4,7 +4,7 @@
 
 <img class="qr_frame" src="{% static 'patient/img/QRRecon3.png' %}">
 <div class="qr_img">
-    {% qr_from_text uuid size="H" image_format="png" error_correction="M" %}
+    {% qr_from_text uuid size="20" image_format="png" error_correction="M" %}
 </div>
 
 <style>
@@ -12,12 +12,14 @@
         position: relative;
         top: 0;
         left: 0;
+        width:1000px;
+        height:1000px;
     }
 
     .qr_img {
         position: absolute;
-        top: 300px;
-        left: 300px;
+        top: 137px;
+        left: 137px;
 
     }
 </style>
