@@ -8,5 +8,6 @@ urlpatterns = [
     path('qr-test/<str:uuid>/', views.qrTest),
     path('login/', views.login),
     path('edit/<str:uuid>/', views.edit),
-    path('delete/<str:uuid>/', views.delete)
+    path('delete/<str:uuid>/', views.delete),
+    path('testadd/', views.upload_file)
 ]

@@ -6,7 +6,7 @@ import django
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import HttpResponseNotFound
-from .forms import PatientForm, UserForm
+from .forms import PatientForm, UserForm, UploadFileForm
 from .models import Patient, Session, User
 
 # Get response with list of all patients.
@@ -37,7 +37,7 @@ def add(request):
         form = PatientForm()
         if request.method == 'POST':
             print(request.POST)
-            form = PatientForm(request.POST)
+            form = PatientForm(request.POST, request.FILES)
             print(form.is_valid())
             if form.is_valid():
                 form.save()
@@ -47,6 +47,14 @@ def add(request):
     else:
         return redirect('/login')
 
+def upload_file(request):
+    if request.method == 'POST':
+        data = request.POST
+        print(request.FILES['picture'])
+        return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'patients/upload.html')
 
 def login(request):
     if request.method == 'POST':

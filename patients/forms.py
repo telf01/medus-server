@@ -6,6 +6,10 @@ from django.forms import ModelForm,TextInput,Textarea
 from .models import Patient, User
 
 
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField()
+
 class PatientForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(PatientForm, self).__init__(*args, **kwargs)
@@ -13,7 +17,7 @@ class PatientForm(ModelForm):
     class Meta:
         model = Patient
         fields = '__all__'
-        exclude = ('uuid', 'picture')
+        exclude = ('uuid',)
         labels = {
             'name': 'Имя',
             'lastname': 'Фамилия',
@@ -23,6 +27,7 @@ class PatientForm(ModelForm):
             'diagnosis': 'Диагноз*',
             'appointment': 'Назначение*',
             'comment': 'Комментарий*',
+            'picture': 'Фото',
         }
         widgets = {
             "name": TextInput(attrs={
@@ -37,6 +42,7 @@ class PatientForm(ModelForm):
 
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'date_of_receipt': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime'}),
+            'picture': forms.FileInput()
         }
 
 
