@@ -7,10 +7,19 @@
 
 {% block content %}
 <h1>Пациенты</h1>
-
+<style>
+.patient-image
+{
+    position: absolute;
+    right: 0;
+    width:200px;
+    height:300px;
+}
+</style>
 {% if patients %}
 {% for el in patients %}
 <div class="alert alert-warning mt-2">
+    <img class = "patient-image" src = "uploads/{{ el.picture }}" >
     <h3> {{el.name}}</h3>
     <h3> {{el.lastname}}</h3>
     <h3> {{el.patronymic}}</h3>
@@ -20,7 +29,7 @@
     <p> {{el.appointment}}</p>
     <p> {{el.comment}}</p>
     <p> {{el.uuid}}</p>
-    <p> {{el.picture}}</p>
+
     <a href="qr-test/{{el.uuid}}">QR код пациента</a>
     <p><a href="edit/{{el.uuid}}">Изменить</a> | <a href="delete/{{el.uuid}}">Удалить</a></p>
 

@@ -7,7 +7,7 @@ from django.db import models
 
 class Patient(models.Model):
     def generate_user_path(self, photo):
-        return 'uploads/patients/photos/user-{0}.{1}'.format(self.uuid, 'png')
+        return 'patients/photos/user-{0}.{1}'.format(self.uuid, 'png')
 
     name = models.CharField(max_length=60)
     lastname = models.CharField(max_length=60)

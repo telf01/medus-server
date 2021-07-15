@@ -9,6 +9,8 @@ from django.http import HttpResponseNotFound
 from .forms import PatientForm, UserForm, UploadFileForm
 from .models import Patient, Session, User
 
+
+
 # Get response with list of all patients.
 def plist(request):
     if checkCookies(request):
@@ -40,7 +42,9 @@ def add(request):
             form = PatientForm(request.POST, request.FILES)
             print(form.is_valid())
             if form.is_valid():
+
                 form.save()
+
                 return redirect('/')
         context = {'form': form}
         return render(request, 'patients/add.html', context)
