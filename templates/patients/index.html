@@ -20,7 +20,9 @@
     <p> {{el.appointment}}</p>
     <p> {{el.comment}}</p>
     <p> {{el.uuid}}</p>
+    <p> {{el.picture}}</p>
     <a href="qr-test/{{el.uuid}}">QR код пациента</a>
+    <p><a href="edit/{{el.uuid}}">Изменить</a> | <a href="delete/{{el.uuid}}">Удалить</a></p>
 
 </div>
 {% endfor %}

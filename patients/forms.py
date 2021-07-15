@@ -54,3 +54,4 @@ class UserForm(ModelForm):
     def save(self, commit=True):
         super(UserForm, self).save(commit=commit)
         return User.objects.filter(login=self.cleaned_data['login']).update(login=self.cleaned_data['login'], password_hash=hashlib.sha256(self.cleaned_data['password'].encode('utf-8')).hexdigest())
+

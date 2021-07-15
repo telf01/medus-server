@@ -1,0 +1,39 @@
+{% extends 'patients/main.html' %}
+{% block content %}
+ <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" value="{{patients.name}}" />
+        </p>
+        <p>
+            <label>Введите фамилию</label><br>
+            <input type="text" name="lastname" value="{{patients.lastname}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="text" name="patronymic" value="{{patients.patronymic}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="date" name="date_of_birth" value="{{patients.date_of_birth}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="datetime-local" name="date_of_receipt" value="{{patients.date_of_receipt}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="text" name="diagnosis" value="{{patients.diagnosis}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="text" name="appointment" value="{{patients.appointment}}" />
+        </p>
+        <p>
+            <label>Введите </label><br>
+            <input type="text" name="comment" value="{{patients.comment}}" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+{% endblock %}

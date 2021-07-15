@@ -5,6 +5,7 @@ import uuid
 import django
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseNotFound
 from .forms import PatientForm, UserForm
 from .models import Patient, Session, User
 
@@ -88,3 +89,37 @@ def addUser(request):
 def qrTest(request, uuid):
     args = {'uuid': uuid}
     return render(request, 'patients/qr.html', args)
+
+
+def edit(request, uuid):
+
+    try:
+
+        patients = Patient.objects.get(uuid=uuid)
+
+        if request.method == "POST":
+            print(request.POST)
+            patients.name = request.POST.get("name")
+            patients.lastname = request.POST.get("lastname")
+            patients.patronymic = request.POST.get("patronymic")
+            patients.date_of_birth = request.POST.get("date_of_birth")
+            patients.date_of_receipt = request.POST.get("date_of_receipt")
+            patients.diagnosis = request.POST.get("diagnosis")
+            patients.appointment = request.POST.get("appointment")
+            patients.comment = request.POST.get("comment")
+            patients.save()
+
+            return HttpResponseRedirect("/")
+        else:
+            return render(request, "patients/edit.html", {"patients": patients})
+    except Patient.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
+
+
+def delete(request, uuid):
+    try:
+        patients = Patient.objects.get(uuid=uuid)
+        patients.delete()
+        return HttpResponseRedirect("/")
+    except Patient.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
