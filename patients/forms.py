@@ -7,19 +7,22 @@ from .models import Patient, User
 
 
 class PatientForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PatientForm, self).__init__(*args, **kwargs)
+
     class Meta:
         model = Patient
         fields = '__all__'
-        exclude = ('uuid',)
+        exclude = ('uuid', 'picture')
         labels = {
             'name': 'Имя',
             'lastname': 'Фамилия',
             'patronymic': 'Отчество*',
             'date_of_birth': 'Дата рождения*',
-            'date_of_receipt': 'Дата и время поступления',
+            'date_of_receipt': 'Дата и время поступления*',
             'diagnosis': 'Диагноз*',
             'appointment': 'Назначение*',
-            'comment': 'Комментарий',
+            'comment': 'Комментарий*',
         }
         widgets = {
             "name": TextInput(attrs={

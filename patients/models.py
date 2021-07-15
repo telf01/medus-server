@@ -6,15 +6,19 @@ from django.db import models
 
 
 class Patient(models.Model):
+    def generate_user_path(self, photo):
+        return 'uploads/patients/photos/user-{0}.{1}'.format(self.uuid, 'png')
+
     name = models.CharField(max_length=60)
     lastname = models.CharField(max_length=60)
-    patronymic = models.CharField(max_length=60, null=True)
-    date_of_birth = models.DateField()
-    date_of_receipt = models.DateTimeField(default=django.utils.timezone.now)
-    diagnosis = models.CharField(max_length=100, null=True)
-    appointment = models.TextField(max_length=10000, null=True)
-    comment = models.TextField(max_length=10000, null=True)
+    patronymic = models.CharField(max_length=60, null=True, blank=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    date_of_receipt = models.DateTimeField(default=django.utils.timezone.now, null=True, blank=True)
+    diagnosis = models.CharField(max_length=100, null=True, blank=True)
+    appointment = models.TextField(max_length=10000, null=True, blank=True)
+    comment = models.TextField(max_length=10000, null=True, blank=True)
     uuid = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4, primary_key=True)
+    picture = models.ImageField(upload_to=generate_user_path, null=True, blank=True)
 
     def __str__(self):
         return self.name + ' ' + self.lastname
