@@ -20,15 +20,15 @@
 {% for el in patients %}
 <div class="alert alert-warning mt-2">
     <img class = "patient-image" src = "uploads/{{ el.picture }}" >
-    <h3> {{el.name}}</h3>
-    <h3> {{el.lastname}}</h3>
-    <h3> {{el.patronymic}}</h3>
-    <p> {{el.date_of_birth}}</p>
-    <p> {{el.date_of_receipt}}</p>
-    <p> {{el.diagnosis}}</p>
-    <p> {{el.appointment}}</p>
-    <p> {{el.comment}}</p>
-    <p> {{el.uuid}}</p>
+    <h3> Имя: {{el.name}}</h3>
+    <h3> Фамилия: {{el.lastname}}</h3>
+    <h3> Отчество: {{el.patronymic}}</h3>
+    <p> Дата рождения: {{el.date_of_birth}}</p>
+    <p> Дата поступления: {{el.date_of_receipt}}</p>
+    <p> Диагноз: {{el.diagnosis}}</p>
+    <p> Назначение: {{el.appointment}}</p>
+    <p> Комментарии: {{el.comment}}</p>
+
 
     <a href="qr-test/{{el.uuid}}">QR код пациента</a>
     <p><a href="edit/{{el.uuid}}">Изменить</a> | <a href="delete/{{el.uuid}}">Удалить</a></p>
